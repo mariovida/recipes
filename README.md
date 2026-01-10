@@ -1,36 +1,53 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Recipes app
 
-## Getting Started
+An app built with **Next.js App Router**, **Prisma 7**, and **SQLite**.
 
-First, run the development server:
+## Overview
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+This app allows users to browse and manage recipes with simple and clean UI and robust backend.It’s designed to be easy to run locally.
+
+## Tech stack
+
+- Next.js 16 - gives clean separation between server and client logic, perfect for filtering, data fetching and rendering dynamic content
+- Prisma 7 - provides a modern, intuitive schema and migrations system, and type‑safe queries
+- SQLite - simple, file‑based database ideal for quick local development
+
+**For this project, I used SQLite because it keeps setup easy - no external DB is required.**
+
+## Setup instructions
+
+### 1. Clone the repository
+
+```
+git clone https://github.com/mariovida/recipes.git
+cd recipe-app
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 2. Initialize the database
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Generate Prisma client:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+npx prisma generate
+```
 
-## Learn More
+Run migrations:
 
-To learn more about Next.js, take a look at the following resources:
+```
+npx prisma migrate dev
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Seed the database:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```
+npm run db:seed
+```
 
-## Deploy on Vercel
+This creates the SQLite file and populates it with sample recipes.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### 3. Start the development server
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```
+npm run dev
+```

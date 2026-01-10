@@ -2,10 +2,64 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 generator client {
-  provider = "prisma-client"
-  output   = "../src/generated/prisma"
+  provider = "prisma-client-js"
 }
 
 datasource db {
   provider = "sqlite"
+}
+
+model Recipe {
+  id              Int        @id @default(autoincrement())
+  slug            String     @unique
+  title           String
+  lead            String?
+  prepTimeMinutes Int
+  servings        Int
+  difficulty      Difficulty
+  mealType        MealType
+  method          Method
+  tags            Json?      @default("[]")
+
+  ingredients  Ingredient[]
+  steps        Step[]
+  imageCdnPath String?
+  createdAt    DateTime     @default(now())
+  updatedAt    DateTime     @updatedAt
+}
+
+model Ingredient {
+  id       Int    @id @default(autoincrement())
+  order    Int
+  text     String
+  recipeId Int
+  recipe   Recipe @relation(fields: [recipeId], references: [id])
+}
+
+model Step {
+  id       Int    @id @default(autoincrement())
+  order    Int
+  text     String
+  recipeId Int
+  recipe   Recipe @relation(fields: [recipeId], references: [id])
+}
+
+enum Difficulty {
+  lagano
+  srednje_zahtjevno
+  slozeno
+}
+
+enum MealType {
+  desert
+  salata
+  juha
+}
+
+enum Method {
+  pecenje
+  przenje
+  kuhanje
+  svjeze
+  bez_kuhanja
 }
