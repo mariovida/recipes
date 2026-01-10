@@ -8,7 +8,10 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "db:seed": "node prisma/seed.js"
+    "db:seed": "node prisma/seed.js",
+    "db:clean": "node prisma/clean.js",
+    "db:reseed": "npm run db:clean && npm run db:seed",
+    "db:reset": "npx prisma generate && rimraf prisma/migrations && rimraf dev.db && npx prisma migrate dev --name init && npm run db:seed"
   },
   "dependencies": {
     "@prisma/adapter-better-sqlite3": "^7.2.0",
@@ -25,6 +28,7 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.1.1",
+    "rimraf": "^6.1.2",
     "typescript": "^5"
   }
 }

@@ -23,7 +23,7 @@ async function main() {
       prepTimeMinutes: 20,
       servings: 2,
       difficulty: "lagano",
-      mealType: "SALAD",
+      mealType: "salata",
       method: "bez_kuhanja",
       tags: ["salata", "svjeze"],
       ingredients: {

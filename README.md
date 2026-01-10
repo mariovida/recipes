@@ -1,6 +1,6 @@
 # Recipes app
 
-An app built with **Next.js App Router**, **Prisma 7**, and **SQLite**.
+An app built with **Next.js App Router**, **Prisma 7** and **SQLite**.
 
 ## Overview
 
