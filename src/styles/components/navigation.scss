@@ -1,0 +1,38 @@
+@use "@/styles/fonts" as f;
+@use "@/styles/colors" as c;
+
+.nav {
+  padding: 24px 0;
+
+  .nav-inner {
+    max-width: 1280px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto;
+    padding: 0 16px;
+  }
+
+  .logo {
+    height: 40px;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 20px;
+
+    a.lead {
+      font-size: 16px;
+      font-weight: 500;
+      background-color: c.$orange;
+      color: c.$black;
+      padding: 10px 22px;
+      border-radius: 24px;
+      transition: background-color 0.2s ease-in-out;
+
+      &:hover {
+        background-color: c.$orange-hover;
+      }
+    }
+  }
+}

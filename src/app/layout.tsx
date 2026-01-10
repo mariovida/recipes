@@ -1,4 +1,5 @@
 import "@/styles/globals.scss";
+import Navigation from "@/components/Navigation";
 
 export const metadata = {
   title: "Recepti",
@@ -13,6 +14,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
+        <Navigation />
         <main>{children}</main>
       </body>
     </html>
