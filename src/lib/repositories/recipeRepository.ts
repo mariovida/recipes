@@ -16,3 +16,15 @@ export async function getAllRecipes(method?: Method) {
     },
   });
 }
+
+export async function getRecipeCountsByMethod() {
+  const counts = await prisma.recipe.groupBy({
+    by: ["method"],
+    _count: { method: true },
+  });
+
+  return counts.reduce((acc, item) => {
+    acc[item.method] = item._count.method;
+    return acc;
+  }, {} as Record<Method, number>);
+}
