@@ -20,7 +20,7 @@ This app allows users to browse and manage recipes with simple and clean UI and 
 
 ```
 git clone https://github.com/mariovida/recipes.git
-cd recipe-app
+cd recipes
 npm install
 ```
 
