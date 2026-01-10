@@ -54,6 +54,9 @@ enum MealType {
   desert
   salata
   juha
+  varivo
+  meso
+  tjestenina
 }
 
 enum Method {
