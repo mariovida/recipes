@@ -492,7 +492,7 @@ async function main() {
       lead: "Klasično domaće jelo s mekanim komadima piletine, bogatim umakom od paprike i kiselog vrhnja - savršeno za ručak uz rižu ili tjesteninu.",
       prepTimeMinutes: 45,
       servings: 4,
-      difficulty: "lagano",
+      difficulty: "srednje_zahtjevno",
       mealType: "meso",
       method: "kuhanje",
       tags: ["domace", "paprika", "comfort-food"],
