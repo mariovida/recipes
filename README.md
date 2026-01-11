@@ -43,10 +43,14 @@ Create a .env file in the project root and add:
 
 ```
 DATABASE_URL="file:./dev.db"
+NEXT_PUBLIC_CDN_BASE_URL="http://localhost:3000/cdn"
 
 ```
 
-Prisma uses this value to run migrations and generate the local dev.db file.
+Prisma and the app both require environment variables to run correctly.
+
+**DATABASE_URL** - used by Prisma to run migrations and generate local dev.db file
+**NEXT_PUBLIC_CDN_BASE_URL** - public URL used for serving images in the app
 
 ### 3. Initialize the database
 
