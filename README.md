@@ -39,7 +39,7 @@ npm install
 
 ### 2. Create .env file
 
-Create a .env file in the project root and add:
+Create .env file in the project root (or copy .env.example to .env and adjust if needed) and add:
 
 ```
 DATABASE_URL="file:./dev.db"
