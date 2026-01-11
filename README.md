@@ -6,6 +6,19 @@ An app built with **Next.js**, **Prisma 7** and **SQLite**.
 
 This app allows users to browse and manage recipes with simple and clean UI. It’s designed to be easy to run locally.
 
+## Node version requirement
+
+To run this project, you need a recent Node.js version because **Prisma 7 requires Node 20.19+, 22.12+ or 24+**.
+
+Recommended: **Node 24.x (Active LTS)**
+
+If you use nvm, you can switch to the correct version with:
+
+```
+nvm install 24
+nvm use 24
+```
+
 ## Tech stack
 
 - Next.js 16 - gives clean separation between server and client logic, perfect for filtering, data fetching and rendering dynamic content
@@ -24,7 +37,18 @@ cd recipes
 npm install
 ```
 
-### 2. Initialize the database
+### 2. Create .env file
+
+Create a .env file in the project root and add:
+
+```
+DATABASE_URL="file:./dev.db"
+
+```
+
+Prisma uses this value to run migrations and generate the local dev.db file.
+
+### 3. Initialize the database
 
 Generate Prisma client:
 
@@ -46,7 +70,7 @@ npm run db:seed
 
 This creates the SQLite file and populates it with sample recipes.
 
-### 3. Start the development server
+### 4. Start the development server
 
 ```
 npm run dev
