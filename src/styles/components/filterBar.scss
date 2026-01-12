@@ -4,21 +4,47 @@
 .filter-bar {
   display: flex;
   gap: 10px;
+  overflow-x: auto;
+  padding-bottom: 6px;
 
   button {
+    display: flex;
+    align-items: center;
+    gap: 8px;
     font-size: 14px;
     font-weight: 500;
-    background-color: transparent;
-    padding: 8px 16px;
-    border: 1px solid c.$gray;
+    padding: 8px 12px 8px 14px;
+    border: 1px solid c.$gray-light;
     border-radius: 24px;
-    outline: 0;
+    background-color: transparent;
     cursor: pointer;
+    transition: all 0.2s ease;
+
+    &:hover {
+      background-color: c.$orange-light;
+    }
 
     &.active {
       background-color: c.$orange;
-      color: c.$white;
+      color: c.$black;
       border-color: c.$orange;
+
+      .count {
+        background-color: c.$orange-light;
+        color: c.$black;
+      }
+    }
+
+    .count {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 24px;
+      height: 24px;
+      background-color: c.$gray-lightest;
+      border-radius: 14px;
+      font-size: 12px;
+      font-weight: 600;
     }
   }
 }

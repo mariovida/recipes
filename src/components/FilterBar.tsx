@@ -23,6 +23,9 @@ export default function FilterBar({
   const router = useRouter();
   const params = useSearchParams();
 
+  const total = Object.values(counts).reduce((a, b) => a + b, 0);
+  if (total === 0) return null;
+
   function updateFilter(method?: Method) {
     const newParams = new URLSearchParams(params.toString());
 
@@ -39,6 +42,9 @@ export default function FilterBar({
         onClick={() => updateFilter(undefined)}
       >
         Svi recepti
+        <span className="count">
+          {Object.values(counts).reduce((a, b) => a + b, 0)}
+        </span>
       </button>
 
       {methods
@@ -50,6 +56,7 @@ export default function FilterBar({
             onClick={() => updateFilter(m)}
           >
             {methodLabels[m]}
+            <span className="count">{counts[m]}</span>
           </button>
         ))}
     </div>
