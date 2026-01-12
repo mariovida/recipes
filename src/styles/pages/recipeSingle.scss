@@ -76,9 +76,17 @@
         margin-top: 20px;
 
         p {
+          display: flex;
+          align-items: center;
+          gap: 4px;
           font-size: 15px;
           line-height: 18px;
-          margin-bottom: 8px;
+          margin-bottom: 10px;
+
+          span {
+            width: 14px;
+            height: 14px;
+          }
 
           &:last-child {
             margin-bottom: 0;

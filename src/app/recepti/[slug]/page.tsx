@@ -8,7 +8,7 @@ import {
 } from "@/lib/repositories/recipeRepository";
 import RecipeCard from "@/components/RecipeCard";
 import RecipeInfo from "@/components/RecipeInfo";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, CircleSmall } from "lucide-react";
 import "@/styles/pages/recipeSingle.scss";
 
 export async function generateMetadata(props: {
@@ -131,7 +131,12 @@ export default async function RecipePage(props: {
             {recipe.ingredients
               .sort((a, b) => a.order - b.order)
               .map((ing) => (
-                <p key={ing.id}>{ing.text}</p>
+                <p key={ing.id}>
+                  <span>
+                    <CircleSmall size={14} color="#f0960f" />
+                  </span>
+                  {ing.text}
+                </p>
               ))}
           </div>
         </section>
