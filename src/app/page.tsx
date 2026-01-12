@@ -33,14 +33,16 @@ export default async function HomePage() {
         </div>
       </section>
 
-      <section className="suggested">
-        <h2>Inspiracija za današnje kuhanje</h2>
-        <div className="suggested-list">
-          {random.map((r) => (
-            <RecipeCard key={r.id} recipe={r} />
-          ))}
-        </div>
-      </section>
+      {random.length > 0 && (
+        <section className="suggested">
+          <h2>Inspiracija za današnje kuhanje</h2>
+          <div className="suggested-list">
+            {random.map((r) => (
+              <RecipeCard key={r.id} recipe={r} />
+            ))}
+          </div>
+        </section>
+      )}
     </div>
   );
 }
