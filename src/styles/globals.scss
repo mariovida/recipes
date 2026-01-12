@@ -42,7 +42,10 @@ button {
   background-color: c.$orange;
   color: c.$black;
   padding: 12px 24px;
-  border-radius: 24px;
+  border: 0;
+  border-radius: 32px;
+  outline: 0;
+  cursor: pointer;
   transition: all 0.2s ease-in-out;
 
   &:hover {

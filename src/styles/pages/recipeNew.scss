@@ -73,19 +73,6 @@
 
     .submit-btn {
       align-self: flex-end;
-      font-size: 16px;
-      font-weight: 500;
-      color: c.$black;
-      background-color: c.$orange;
-      padding: 14px 24px;
-      border: none;
-      border-radius: 12px;
-      cursor: pointer;
-      transition: background-color 0.2s ease-in-out;
-
-      &:hover {
-        background-color: c.$orange-hover;
-      }
 
       &:disabled {
         opacity: 0.6;

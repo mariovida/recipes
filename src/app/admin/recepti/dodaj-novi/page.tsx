@@ -142,7 +142,11 @@ export default function NewRecipePage() {
           </label>
         </div>
 
-        <button type="submit" disabled={loading} className="submit-btn">
+        <button
+          type="submit"
+          disabled={loading}
+          className="btn-primary submit-btn"
+        >
           Dodaj recept
         </button>
 
