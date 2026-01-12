@@ -19,6 +19,7 @@ export async function getAllRecipes(method?: Method) {
   });
 }
 
+// Count recipes based on method
 export async function getRecipeCountsByMethod() {
   const counts = await prisma.recipe.groupBy({
     by: ["method"],
@@ -31,6 +32,7 @@ export async function getRecipeCountsByMethod() {
   }, {} as Record<Method, number>);
 }
 
+// Get 4 latest recipes based on method
 export async function getRandomRecipesByMethod(
   method: Method
 ): Promise<RecipeCardData[]> {

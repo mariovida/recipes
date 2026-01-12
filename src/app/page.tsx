@@ -1,9 +1,13 @@
 import Link from "next/link";
 import Image from "next/image";
+import { getRandomRecipesByMethod } from "@/lib/repositories/recipeRepository";
+import RecipeCard from "@/components/RecipeCard";
 import { ArrowRight } from "lucide-react";
 import "@/styles/pages/home.scss";
 
 export default async function HomePage() {
+  const random = await getRandomRecipesByMethod("kuhanje");
+
   return (
     <div className="wrapper home-page">
       <section className="hero">
@@ -26,6 +30,15 @@ export default async function HomePage() {
             Istražite recepte
             <ArrowRight size={22} />
           </Link>
+        </div>
+      </section>
+
+      <section className="suggested">
+        <h2>Inspiracija za današnje kuhanje</h2>
+        <div className="suggested-list">
+          {random.map((r) => (
+            <RecipeCard key={r.id} recipe={r} />
+          ))}
         </div>
       </section>
     </div>
