@@ -1,10 +1,10 @@
 # Recipes app
 
-An app built with **Next.js App Router**, **Prisma 7** and **SQLite**.
+An app built with **Next.js**, **Prisma 7** and **SQLite**.
 
 ## Overview
 
-This app allows users to browse and manage recipes with simple and clean UI and robust backend.It’s designed to be easy to run locally.
+This app allows users to browse and manage recipes with simple and clean UI. It’s designed to be easy to run locally.
 
 ## Tech stack
 
