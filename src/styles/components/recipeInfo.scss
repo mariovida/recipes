@@ -1,0 +1,41 @@
+@use "@/styles/fonts" as f;
+@use "@/styles/colors" as c;
+
+.info {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  margin: 32px 0 48px 0;
+  padding: 0 4px;
+
+  &-card {
+    display: flex;
+    flex: 1;
+
+    .icon {
+      width: 20px;
+      height: 20px;
+      padding: 10px;
+      background-color: c.$orange-light;
+      border-radius: 6px;
+    }
+
+    .text {
+      display: flex;
+      flex-direction: column;
+      padding-left: 12px;
+      cursor: default;
+
+      .label {
+        font-size: 14px;
+        color: c.$gray;
+      }
+
+      .value {
+        font-family: f.$ff-title;
+        font-size: 16px;
+        font-weight: 600;
+      }
+    }
+  }
+}

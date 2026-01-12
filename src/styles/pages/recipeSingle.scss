@@ -1,0 +1,139 @@
+@use "@/styles/fonts" as f;
+@use "@/styles/colors" as c;
+
+.recipe-page {
+  padding: 16px 0 80px;
+
+  .back-link {
+    margin-bottom: 24px;
+
+    a {
+      display: inline-flex;
+      gap: 8px;
+      font-size: 15px;
+      line-height: 20px;
+      font-weight: 500;
+      color: c.$orange;
+
+      &:hover {
+        color: c.$orange-hover;
+      }
+    }
+  }
+
+  .date {
+    font-size: 14px;
+    font-weight: 500;
+    color: c.$gray;
+    margin-bottom: 8px;
+  }
+
+  .title {
+    font-family: f.$ff-title;
+    font-size: 36px;
+    color: c.$black;
+  }
+
+  .lead {
+    color: c.$gray;
+    margin-top: 8px;
+  }
+
+  header.hero {
+    position: relative;
+    width: 100%;
+    height: 440px;
+    border-radius: 20px;
+    margin: 20px 0;
+    overflow: hidden;
+    cursor: default;
+  }
+
+  .content {
+    position: relative;
+    display: flex;
+    gap: 40px;
+
+    h2 {
+      font-size: 28px;
+    }
+
+    .ingredients {
+      width: 250px;
+      height: max-content;
+      position: sticky;
+      top: 32px;
+      padding: 20px 20px 24px 20px;
+      border-radius: 16px;
+      box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
+        rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+
+      h2 {
+        color: c.$orange;
+      }
+
+      &-list {
+        margin-top: 20px;
+
+        p {
+          font-size: 15px;
+          line-height: 18px;
+          margin-bottom: 8px;
+
+          &:last-child {
+            margin-bottom: 0;
+          }
+        }
+      }
+    }
+
+    .steps {
+      flex: 1;
+
+      .steps-list {
+        list-style: none;
+        counter-reset: step;
+        padding: 0;
+        margin: 16px 0 0 0;
+      }
+
+      .step {
+        counter-increment: step;
+        display: flex;
+        align-items: flex-start;
+        gap: 16px;
+        line-height: 24px;
+        margin-bottom: 20px;
+
+        &::before {
+          content: counter(step);
+          flex-shrink: 0;
+          width: 40px;
+          height: 40px;
+          background-color: c.$orange-light;
+          border-radius: 6px;
+          color: c.$orange-hover;
+          font-family: f.$ff-title;
+          font-size: 20px;
+          font-weight: 700;
+          line-height: 20px;
+          display: grid;
+          align-items: center;
+          justify-content: center;
+        }
+      }
+    }
+  }
+
+  .related {
+    margin-top: 48px;
+
+    .related-list {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      row-gap: 32px;
+      column-gap: 24px;
+      margin-top: 32px;
+    }
+  }
+}
