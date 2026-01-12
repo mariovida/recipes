@@ -14,7 +14,7 @@ model Recipe {
   slug            String     @unique
   title           String
   lead            String?
-  prepTimeMinutes Int
+  prepTimeMinutes Int?
   servings        Int
   difficulty      Difficulty
   mealType        MealType

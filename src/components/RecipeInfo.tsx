@@ -5,7 +5,7 @@ import { Difficulty, Method } from "@prisma/client";
 import "@/styles/components/recipeInfo.scss";
 
 type InfoProps = {
-  prepTimeMinutes: number;
+  prepTimeMinutes: number | null;
   servings: number;
   difficulty: Difficulty;
   mealType: string;
