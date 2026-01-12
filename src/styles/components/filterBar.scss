@@ -12,7 +12,7 @@
     align-items: center;
     gap: 8px;
     font-size: 14px;
-    font-weight: 500;
+    font-weight: 600;
     padding: 8px 12px 8px 14px;
     border: 1px solid c.$gray-light;
     border-radius: 24px;
@@ -28,6 +28,7 @@
       background-color: c.$orange;
       color: c.$black;
       border-color: c.$orange;
+      pointer-events: none;
 
       .count {
         background-color: c.$orange-light;
