@@ -2,7 +2,11 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
-import { getRecipeBySlug } from "@/lib/repositories/recipeRepository";
+import {
+  getRecipeBySlug,
+  getRelatedRecipes,
+} from "@/lib/repositories/recipeRepository";
+import RecipeCard from "@/components/RecipeCard";
 import RecipeInfo from "@/components/RecipeInfo";
 import { ArrowLeft } from "lucide-react";
 import "@/styles/pages/recipeSingle.scss";
@@ -74,6 +78,12 @@ export default async function RecipePage(props: {
     notFound();
   }
 
+  const related = await getRelatedRecipes(
+    recipe.id,
+    recipe.mealType,
+    recipe.method
+  );
+
   const imageUrl = `${process.env.NEXT_PUBLIC_CDN_BASE_URL}${recipe.imageCdnPath}`;
 
   return (
@@ -137,6 +147,17 @@ export default async function RecipePage(props: {
           </ol>
         </section>
       </div>
+
+      {related.length > 0 && (
+        <section className="related">
+          <h2>Preporučeni recepti</h2>
+          <div className="related-list">
+            {related.map((r) => (
+              <RecipeCard key={r.id} recipe={r} />
+            ))}
+          </div>
+        </section>
+      )}
     </div>
   );
 }
