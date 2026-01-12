@@ -26,7 +26,7 @@ export default async function HomePage() {
           <p className="subtitle">
             Otkrijte recepte koji inspiriraju svaki dan.
           </p>
-          <Link href="/recepti" className="hero-btn">
+          <Link href="/recepti" className="btn-primary hero-btn">
             Istražite recepte
             <ArrowRight size={22} />
           </Link>
