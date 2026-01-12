@@ -19,6 +19,15 @@
 
   .nav-links {
     display: flex;
-    gap: 20px;
+    align-items: center;
+    gap: 24px;
+
+    .nav-btn {
+      font-weight: 500;
+
+      &:hover {
+        color: c.$black-light;
+      }
+    }
   }
 }
