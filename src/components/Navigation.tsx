@@ -10,7 +10,7 @@ export default function Navigation() {
           <Image src="/logo.svg" alt="Logo" width={160} height={40} priority />
         </Link>
         <div className="nav-links">
-          <Link href="/" className="lead">
+          <Link href="/admin/recepti/dodaj-novi" className="btn-primary">
             Dodajte recept
           </Link>
         </div>

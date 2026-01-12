@@ -23,7 +23,6 @@
       left: 40px;
 
       h1 {
-        font-family: f.$ff-title;
         font-size: 52px;
         font-weight: 700;
         line-height: 56px;
@@ -45,16 +44,12 @@
         display: inline-flex;
         gap: 10px;
         font-size: 18px;
-        font-weight: 500;
         padding: 14px 20px 14px 24px;
-        background-color: c.$orange;
         margin-top: 32px;
         border-radius: 32px;
-        transition: all 0.2s ease-in-out;
 
         &:hover {
           gap: 14px;
-          background-color: c.$orange-hover;
         }
       }
     }
