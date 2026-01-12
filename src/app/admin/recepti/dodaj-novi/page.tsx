@@ -5,7 +5,7 @@ import { Difficulty, Method, MealType } from "@prisma/client";
 import { difficultyLabels } from "@/lib/enums/difficulty";
 import { methodLabels } from "@/lib/enums/method";
 import { mealTypeLabels } from "@/lib/enums/mealType";
-import { Select, SelectItem } from "@/components/ui/Select";
+import { Select, SelectItem } from "@/components/Select";
 import IngredientsList from "@/components/IngredientsList";
 import { slugify } from "@/lib/slugify";
 import "@/styles/pages/recipeNew.scss";

@@ -2,7 +2,7 @@
 
 import * as RadixSelect from "@radix-ui/react-select";
 import { ChevronDown, ChevronUp } from "lucide-react";
-import "@/styles/components/ui/select.scss";
+import "@/styles/components/select.scss";
 
 export function Select<T extends string>({
   name,
