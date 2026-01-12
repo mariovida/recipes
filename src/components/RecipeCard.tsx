@@ -5,7 +5,7 @@ import Image from "next/image";
 import { useState } from "react";
 import { Difficulty } from "@prisma/client";
 import { RecipeCardData } from "@/types/recipe";
-import { Star } from "lucide-react";
+import { Star, Clock } from "lucide-react";
 import "@/styles/components/recipeCard.scss";
 
 type Props = {
@@ -35,23 +35,30 @@ export default function RecipeCard({ recipe }: Props) {
           onError={() => setImgSrc("/images/recipe-placeholder.jpg")}
         />
       </div>
-
-      <div className="card-content">
-        <div className="difficulty">
-          {[...Array(3)].map((_, i) => (
-            <Star
-              key={i}
-              size={16}
-              color={
-                i < difficultyStars[recipe.difficulty] ? "#f1a027" : "#ffffff"
-              }
-              fill={i < difficultyStars[recipe.difficulty] ? "#f1a027" : "none"}
-            />
-          ))}
+      <div className="recipe-card_content">
+        <div className="recipe-info">
+          {recipe.prepTimeMinutes && (
+            <p>
+              <Clock size={15} />
+              {recipe.prepTimeMinutes} min
+            </p>
+          )}
+          <div className="difficulty">
+            {[...Array(3)].map((_, i) => (
+              <Star
+                key={i}
+                size={16}
+                color={
+                  i < difficultyStars[recipe.difficulty] ? "#f1a027" : "#ffffff"
+                }
+                fill={
+                  i < difficultyStars[recipe.difficulty] ? "#f1a027" : "none"
+                }
+              />
+            ))}
+          </div>
         </div>
-
-        <h2>{recipe.title}</h2>
-        {recipe.prepTimeMinutes && <p>{recipe.prepTimeMinutes} min</p>}
+        <h3 className="name">{recipe.title}</h3>
       </div>
     </Link>
   );
