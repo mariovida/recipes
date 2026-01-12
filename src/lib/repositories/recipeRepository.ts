@@ -1,7 +1,7 @@
 import { cache } from "react";
 import prisma from "@/lib/prisma";
-import { MealType, Method } from "@prisma/client";
-import { RecipeCardData } from "@/types/recipe";
+import { MealType, Method, Difficulty } from "@prisma/client";
+import { RecipeCardData, CreateRecipeInput } from "@/types/recipe";
 
 export async function getAllRecipes(method?: Method) {
   return prisma.recipe.findMany({
@@ -103,4 +103,53 @@ export async function getRelatedRecipes(
   const unique = Array.from(new Map(combined.map((r) => [r.id, r])).values());
 
   return unique.slice(0, 3);
+}
+
+export async function createRecipe(data: CreateRecipeInput) {
+  if (!data.title || !data.slug) {
+    throw new Error("Title and slug are required.");
+  }
+
+  if (!Object.values(Method).includes(data.method)) {
+    throw new Error("Invalid method.");
+  }
+
+  if (!Object.values(Difficulty).includes(data.difficulty)) {
+    throw new Error("Invalid difficulty.");
+  }
+
+  if (!Object.values(MealType).includes(data.mealType)) {
+    throw new Error("Invalid meal type.");
+  }
+
+  const prepTime =
+    data.prepTimeMinutes !== undefined && data.prepTimeMinutes !== null
+      ? Number(data.prepTimeMinutes)
+      : null;
+
+  if (prepTime !== null && isNaN(prepTime)) {
+    throw new Error("Prep time must be a number.");
+  }
+
+  const existing = await prisma.recipe.findUnique({
+    where: { slug: data.slug },
+  });
+
+  if (existing) {
+    throw new Error("Slug already exists");
+  }
+
+  return prisma.recipe.create({
+    data: {
+      title: data.title,
+      slug: data.slug,
+      lead: data.lead ?? null,
+      prepTimeMinutes: prepTime,
+      difficulty: data.difficulty,
+      servings: Number(data.servings),
+      method: data.method,
+      mealType: data.mealType,
+      imageCdnPath: data.imageCdnPath,
+    },
+  });
 }

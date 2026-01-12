@@ -1,4 +1,4 @@
-import { Prisma } from "@prisma/client";
+import { Prisma, Difficulty, Method, MealType } from "@prisma/client";
 
 export type RecipeCardData = Prisma.RecipeGetPayload<{
   select: {
@@ -11,3 +11,15 @@ export type RecipeCardData = Prisma.RecipeGetPayload<{
     method: true;
   };
 }>;
+
+export type CreateRecipeInput = {
+  title: string;
+  slug: string;
+  lead?: string | null;
+  prepTimeMinutes?: string | number | null;
+  difficulty: Difficulty;
+  servings: string | number;
+  method: Method;
+  mealType: MealType;
+  imageCdnPath: string;
+};
