@@ -1,0 +1,96 @@
+@use "@/styles/fonts" as f;
+@use "@/styles/colors" as c;
+
+.new-recipe {
+  padding: 24px 16px 80px;
+
+  h1 {
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 32px;
+  }
+
+  h3 {
+    font-size: 18px;
+    font-weight: 700;
+  }
+
+  .recipe-form {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    padding: 24px;
+    border-radius: 16px;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
+      rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+
+      .full {
+        grid-column: 1 / -1;
+      }
+
+      label {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        font-family: f.$ff-title;
+        font-size: 14px;
+        font-weight: 600;
+
+        input,
+        select,
+        textarea {
+          font-size: 16px;
+          padding: 14px 16px;
+          border: 1px solid c.$gray-light;
+          border-radius: 8px;
+          transition: border-color 0.2s ease-in-out;
+
+          &:focus {
+            border-color: c.$orange-hover;
+            outline: none;
+          }
+        }
+
+        input.readonly {
+          background-color: #f5f5f5;
+          color: c.$gray;
+          border-color: c.$gray-light;
+          cursor: not-allowed;
+        }
+
+        textarea {
+          resize: vertical;
+          min-height: 90px;
+          max-height: 200px;
+        }
+      }
+    }
+
+    .submit-btn {
+      align-self: flex-end;
+      font-size: 16px;
+      font-weight: 500;
+      color: c.$black;
+      background-color: c.$orange;
+      padding: 14px 24px;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: background-color 0.2s ease-in-out;
+
+      &:hover {
+        background-color: c.$orange-hover;
+      }
+
+      &:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+      }
+    }
+  }
+}
