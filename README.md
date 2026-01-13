@@ -1,4 +1,4 @@
-![Showcase 1](https://i.ibb.co/MyTKk3DL/recipes-showcase1-scaled.png)
+<!-- ![Showcase 1](https://i.ibb.co/MyTKk3DL/recipes-showcase1-scaled.png) -->
 
 # Recipes app
 
@@ -80,4 +80,12 @@ This creates the SQLite file and populates it with sample recipes.
 
 ```
 npm run dev
+```
+
+## Useful npm script to manage the database
+
+Clearing all data from the database:
+
+```
+npm run db:clean
 ```
