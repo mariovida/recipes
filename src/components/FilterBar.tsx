@@ -41,7 +41,7 @@ export default function FilterBar({
         className={!selected ? "active" : ""}
         onClick={() => updateFilter(undefined)}
       >
-        Svi recepti
+        <span className="method">Svi recepti</span>
         <span className="count">
           {Object.values(counts).reduce((a, b) => a + b, 0)}
         </span>
@@ -55,7 +55,7 @@ export default function FilterBar({
             className={selected === m ? "active" : ""}
             onClick={() => updateFilter(m)}
           >
-            {methodLabels[m]}
+            <span className="method">{methodLabels[m]}</span>
             <span className="count">{counts[m]}</span>
           </button>
         ))}
