@@ -136,7 +136,7 @@ export async function createRecipe(data: CreateRecipeInput) {
   });
 
   if (existing) {
-    throw new Error("Slug already exists");
+    throw new Error("Slug already exists.");
   }
 
   return prisma.recipe.create({
@@ -149,7 +149,16 @@ export async function createRecipe(data: CreateRecipeInput) {
       servings: Number(data.servings),
       method: data.method,
       mealType: data.mealType,
-      imageCdnPath: data.imageCdnPath,
+      imageCdnPath: data.imageCdnPath ?? null,
+      ingredients: {
+        create: data.ingredients.map((ing, index) => ({
+          text: ing.text,
+          order: index + 1,
+        })),
+      },
+    },
+    include: {
+      ingredients: true,
     },
   });
 }
