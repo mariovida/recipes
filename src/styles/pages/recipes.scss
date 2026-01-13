@@ -6,6 +6,7 @@
   row-gap: 32px;
   column-gap: 24px;
   margin-top: 32px;
+  padding-bottom: 80px;
 
   @include md {
     grid-template-columns: repeat(3, 1fr);
