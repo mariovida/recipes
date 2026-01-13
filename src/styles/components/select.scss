@@ -16,8 +16,12 @@
     outline: 0;
   }
 }
+.select-trigger[data-state="open"] {
+  border-color: c.$orange-hover;
+}
 
 .select-content {
+  min-width: 180px;
   padding: 6px;
   background-color: c.$white;
   border: 1px solid c.$gray-light;

@@ -25,7 +25,7 @@
     font-size: 14px;
     font-weight: 500;
     color: c.$gray;
-    margin-bottom: 8px;
+    margin-bottom: 12px;
   }
 
   .title {
@@ -77,7 +77,7 @@
 
         p {
           display: flex;
-          align-items: center;
+          align-items: flex-start;
           gap: 4px;
           font-size: 15px;
           line-height: 18px;
@@ -86,6 +86,7 @@
           span {
             width: 14px;
             height: 14px;
+            padding-top: 2px;
           }
 
           &:last-child {
@@ -111,7 +112,7 @@
         align-items: flex-start;
         gap: 16px;
         line-height: 24px;
-        margin-bottom: 20px;
+        margin-bottom: 24px;
 
         &::before {
           content: counter(step);
