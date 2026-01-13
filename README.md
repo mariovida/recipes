@@ -1,4 +1,4 @@
-![Showcase 1](https://i.ibb.co/rfHZQKpL/recipes-showcase1.png)
+![Showcase 1](https://i.ibb.co/MyTKk3DL/recipes-showcase1-scaled.png)
 
 # Recipes app
 
