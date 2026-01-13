@@ -16,10 +16,11 @@ export type CreateRecipeInput = {
   title: string;
   slug: string;
   lead?: string | null;
-  prepTimeMinutes?: string | number | null;
+  prepTimeMinutes?: number | null;
   difficulty: Difficulty;
   servings: string | number;
   method: Method;
   mealType: MealType;
-  imageCdnPath: string;
+  imageCdnPath?: string;
+  ingredients: { text: string }[];
 };
