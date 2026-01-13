@@ -1,3 +1,5 @@
+![Showcase 1](https://i.ibb.co/rfHZQKpL/recipes-showcase1.png)
+
 # Recipes app
 
 An app built with **Next.js**, **Prisma 7** and **SQLite**.
