@@ -156,9 +156,16 @@ export async function createRecipe(data: CreateRecipeInput) {
           order: index + 1,
         })),
       },
+      steps: {
+        create: data.steps.map((step, index) => ({
+          text: step.text,
+          order: index + 1,
+        })),
+      },
     },
     include: {
       ingredients: true,
+      steps: true,
     },
   });
 }

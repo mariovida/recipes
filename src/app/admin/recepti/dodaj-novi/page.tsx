@@ -7,6 +7,9 @@ import { methodLabels } from "@/lib/enums/method";
 import { mealTypeLabels } from "@/lib/enums/mealType";
 import { Select, SelectItem } from "@/components/Select";
 import IngredientsList from "@/components/IngredientsList";
+import { IngredientInput } from "@/components/IngredientsList";
+import StepsList from "@/components/StepsList";
+import { StepInput } from "@/components/StepsList";
 import { slugify } from "@/lib/slugify";
 import "@/styles/pages/recipeNew.scss";
 
@@ -14,6 +17,13 @@ export default function NewRecipePage() {
   const [method, setMethod] = useState<Method>(Method.pecenje);
   const [difficulty, setDifficulty] = useState<Difficulty>(Difficulty.lagano);
   const [mealType, setMealType] = useState<MealType>(MealType.desert);
+  const [imageFilename, setImageFilename] = useState("");
+  const [ingredients, setIngredients] = useState<IngredientInput[]>([
+    { id: crypto.randomUUID(), text: "" },
+  ]);
+  const [steps, setSteps] = useState<StepInput[]>([
+    { id: crypto.randomUUID(), text: "" },
+  ]);
 
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState<string | null>(null);
@@ -25,7 +35,30 @@ export default function NewRecipePage() {
     setMessage(null);
 
     const form = e.currentTarget;
-    const data = Object.fromEntries(new FormData(form));
+    const filename = imageFilename;
+    const data = {
+      title: (form.elements.namedItem("title") as HTMLInputElement).value,
+      slug,
+      lead: (form.elements.namedItem("lead") as HTMLTextAreaElement).value,
+      imageCdnPath: `/recipes/${slug}/${filename}`,
+      servings: Number(
+        (form.elements.namedItem("servings") as HTMLInputElement).value
+      ),
+      prepTimeMinutes: Number(
+        (form.elements.namedItem("prepTimeMinutes") as HTMLInputElement).value
+      ),
+      method,
+      mealType,
+      difficulty,
+      ingredients: ingredients.map((item, index) => ({
+        order: index + 1,
+        text: item.text,
+      })),
+      steps: steps.map((item, index) => ({
+        order: index + 1,
+        text: item.text,
+      })),
+    };
 
     const res = await fetch("/api/recipes", {
       method: "POST",
@@ -41,6 +74,7 @@ export default function NewRecipePage() {
       setMessage("Recept uspješno dodan!");
       form.reset();
       setSlug("");
+      setIngredients([{ id: crypto.randomUUID(), text: "" }]);
     }
 
     setLoading(false);
@@ -52,16 +86,20 @@ export default function NewRecipePage() {
 
       <form onSubmit={handleSubmit} className="recipe-form">
         <div className="form-grid">
-          <label>
+          <label className="full">
             Naslov
             <input
               name="title"
               required
-              onChange={(e) => setSlug(slugify(e.target.value))}
+              onChange={(e) => {
+                const newSlug = slugify(e.target.value);
+                setSlug(newSlug);
+                setImageFilename(`${newSlug}.jpg`);
+              }}
             />
           </label>
 
-          <label>
+          <label className="full">
             Slug
             <input name="slug" value={slug} readOnly className="readonly" />
           </label>
@@ -129,16 +167,22 @@ export default function NewRecipePage() {
           </label>
 
           <label className="full">
-            Putanja slike
+            Naziv slike
             <input
-              name="imageCdnPath"
-              placeholder="/recipes/palacinke/hero.jpg"
+              name="imageFilename"
+              placeholder="image.jpg"
               required
+              value={imageFilename}
+              onChange={(e) => setImageFilename(e.target.value)}
             />
           </label>
 
           <label className="full">
-            <IngredientsList />
+            <IngredientsList items={ingredients} setItems={setIngredients} />
+          </label>
+
+          <label className="full">
+            <StepsList items={steps} setItems={setSteps} />
           </label>
         </div>
 
