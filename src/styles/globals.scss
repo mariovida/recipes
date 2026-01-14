@@ -62,3 +62,20 @@ button {
     color: c.$black;
   }
 }
+
+.back-link {
+  margin-bottom: 32px;
+
+  a {
+    display: inline-flex;
+    gap: 8px;
+    font-size: 15px;
+    line-height: 20px;
+    font-weight: 500;
+    color: c.$orange;
+
+    &:hover {
+      color: c.$orange-hover;
+    }
+  }
+}
