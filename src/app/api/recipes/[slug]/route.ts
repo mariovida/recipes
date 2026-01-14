@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import {
   getRecipeBySlug,
   updateRecipe,
+  deleteRecipe,
 } from "@/lib/repositories/recipeRepository";
 
 export async function GET(
@@ -79,5 +80,19 @@ export async function PUT(
       { error: "Error while updating recipe." },
       { status: 400 }
     );
+  }
+}
+
+export async function DELETE(
+  req: Request,
+  context: { params: Promise<{ slug: string }> }
+) {
+  const { slug } = await context.params;
+
+  try {
+    await deleteRecipe(slug);
+    return NextResponse.json({ success: true });
+  } catch {
+    return NextResponse.json({ error: "Recipe not found." }, { status: 404 });
   }
 }

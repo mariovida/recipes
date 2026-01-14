@@ -239,3 +239,10 @@ export async function updateRecipe(
     },
   });
 }
+
+// Delete recipe
+export async function deleteRecipe(slug: string) {
+  return prisma.recipe.delete({
+    where: { slug },
+  });
+}
