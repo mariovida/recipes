@@ -10,12 +10,13 @@
 
   &-card {
     display: flex;
+    align-items: center;
     flex: 1;
 
     .icon {
       width: 20px;
       height: 20px;
-      padding: 10px;
+      padding: 12px;
       background-color: c.$orange-light;
       border-radius: 6px;
     }
