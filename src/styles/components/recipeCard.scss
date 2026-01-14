@@ -1,5 +1,6 @@
 @use "@/styles/fonts" as f;
 @use "@/styles/colors" as c;
+@use "@/styles/breakpoints" as *;
 
 .recipe-card {
   display: block;
@@ -20,6 +21,10 @@
     height: 180px;
     border-radius: 12px;
     overflow: hidden;
+
+    @include xs {
+      height: 220px;
+    }
   }
 
   &_content {

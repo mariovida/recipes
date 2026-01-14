@@ -1,8 +1,10 @@
 @use "@/styles/fonts" as f;
 @use "@/styles/colors" as c;
+@use "@/styles/breakpoints" as *;
 
 .home-page {
   padding-bottom: 80px;
+
   .hero {
     position: relative;
     width: 100%;
@@ -10,6 +12,10 @@
     border-radius: 20px;
     overflow: hidden;
     cursor: default;
+
+    @include sm {
+      height: 420px;
+    }
 
     .hero-bg {
       z-index: 1;
@@ -22,11 +28,21 @@
       bottom: 40px;
       left: 40px;
 
+      @include sm {
+        bottom: 32px;
+        left: 24px;
+      }
+
       h1 {
         font-size: 52px;
         font-weight: 700;
         line-height: 56px;
         color: c.$black;
+
+        @include sm {
+          font-size: 32px;
+          line-height: 36px;
+        }
 
         span {
           display: block;
@@ -38,6 +54,11 @@
         margin-top: 32px;
         font-size: 20px;
         color: c.$black-light;
+
+        @include sm {
+          margin-top: 24px;
+          font-size: 16px;
+        }
       }
 
       .hero-btn {
@@ -68,6 +89,19 @@
       row-gap: 32px;
       column-gap: 24px;
       margin-top: 24px;
+
+      @include md {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      @include sm {
+        grid-template-columns: repeat(2, 1fr);
+        row-gap: 20px;
+      }
+
+      @include xs {
+        grid-template-columns: repeat(1, 1fr);
+      }
     }
   }
 }

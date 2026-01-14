@@ -1,5 +1,6 @@
 @use "@/styles/fonts" as f;
 @use "@/styles/colors" as c;
+@use "@/styles/breakpoints" as *;
 
 .nav {
   padding: 24px 0;
@@ -28,6 +29,10 @@
       &:hover {
         color: c.$black-light;
       }
+    }
+
+    @include xs {
+      display: none;
     }
   }
 }

@@ -1,5 +1,6 @@
 @use "@/styles/fonts" as f;
 @use "@/styles/colors" as c;
+@use "@/styles/breakpoints" as *;
 
 .recipe-page {
   padding-bottom: 80px;
@@ -15,11 +16,19 @@
     font-family: f.$ff-title;
     font-size: 36px;
     color: c.$black;
+
+    @include sm {
+      font-size: 24px;
+    }
   }
 
   .lead {
     color: c.$gray;
     margin-top: 8px;
+
+    @include sm {
+      font-size: 16px;
+    }
   }
 
   header.hero {
@@ -30,12 +39,20 @@
     margin: 20px 0;
     overflow: hidden;
     cursor: default;
+
+    @include sm {
+      height: 260px;
+    }
   }
 
   .content {
     position: relative;
     display: flex;
     gap: 40px;
+
+    @include sm {
+      flex-direction: column;
+    }
 
     h2 {
       font-size: 28px;
@@ -50,6 +67,12 @@
       border-radius: 16px;
       box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
         rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+
+      @include sm {
+        width: auto;
+        position: relative;
+        top: 0;
+      }
 
       h2 {
         color: c.$orange;
@@ -126,6 +149,10 @@
       row-gap: 32px;
       column-gap: 24px;
       margin-top: 32px;
+
+      @include sm {
+        grid-template-columns: repeat(1, 1fr);
+      }
     }
   }
 }

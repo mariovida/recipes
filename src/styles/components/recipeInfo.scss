@@ -1,5 +1,6 @@
 @use "@/styles/fonts" as f;
 @use "@/styles/colors" as c;
+@use "@/styles/breakpoints" as *;
 
 .info {
   display: flex;
@@ -7,6 +8,11 @@
   gap: 20px;
   margin: 32px 0 48px 0;
   padding: 0 4px;
+
+  @include sm {
+    flex-direction: column;
+    margin-bottom: 32px;
+  }
 
   &-card {
     display: flex;
