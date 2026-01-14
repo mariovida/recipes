@@ -194,7 +194,7 @@ export default function NewRecipePage() {
           Dodaj recept
         </button>
 
-        {message && <p className="form-message">{message}</p>}
+        {message && <p>{message}</p>}
       </form>
     </div>
   );
