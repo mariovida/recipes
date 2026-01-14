@@ -83,7 +83,7 @@ async function main() {
 
   await prisma.recipe.create({
     data: {
-      slug: "chocolate-cake",
+      slug: "cokoladni-kolac",
       title: "Čokoladni kolač",
       lead: "Sočan i bogat čokoladni kolač intenzivnog okusa, savršen za posebne prilike, obiteljska slavlja ili kad vam se jednostavno jede nešto slatko.",
       prepTimeMinutes: 90,
