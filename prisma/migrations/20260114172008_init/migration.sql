@@ -4,7 +4,7 @@ CREATE TABLE "Recipe" (
     "slug" TEXT NOT NULL,
     "title" TEXT NOT NULL,
     "lead" TEXT,
-    "prepTimeMinutes" INTEGER NOT NULL,
+    "prepTimeMinutes" INTEGER,
     "servings" INTEGER NOT NULL,
     "difficulty" TEXT NOT NULL,
     "mealType" TEXT NOT NULL,
@@ -21,7 +21,7 @@ CREATE TABLE "Ingredient" (
     "order" INTEGER NOT NULL,
     "text" TEXT NOT NULL,
     "recipeId" INTEGER NOT NULL,
-    CONSTRAINT "Ingredient_recipeId_fkey" FOREIGN KEY ("recipeId") REFERENCES "Recipe" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
+    CONSTRAINT "Ingredient_recipeId_fkey" FOREIGN KEY ("recipeId") REFERENCES "Recipe" ("id") ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 -- CreateTable
@@ -30,7 +30,7 @@ CREATE TABLE "Step" (
     "order" INTEGER NOT NULL,
     "text" TEXT NOT NULL,
     "recipeId" INTEGER NOT NULL,
-    CONSTRAINT "Step_recipeId_fkey" FOREIGN KEY ("recipeId") REFERENCES "Recipe" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
+    CONSTRAINT "Step_recipeId_fkey" FOREIGN KEY ("recipeId") REFERENCES "Recipe" ("id") ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 -- CreateIndex
