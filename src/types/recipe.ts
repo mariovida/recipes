@@ -25,3 +25,12 @@ export type CreateRecipeInput = {
   ingredients: { text: string }[];
   steps: { text: string }[];
 };
+
+export type AdminRecipeListItem = Prisma.RecipeGetPayload<{
+  select: {
+    id: true;
+    slug: true;
+    title: true;
+    imageCdnPath: true;
+  };
+}>;
