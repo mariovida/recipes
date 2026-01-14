@@ -23,4 +23,5 @@ export type CreateRecipeInput = {
   mealType: MealType;
   imageCdnPath?: string;
   ingredients: { text: string }[];
+  steps: { text: string }[];
 };
