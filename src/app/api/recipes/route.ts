@@ -14,11 +14,14 @@ export async function POST(req: Request) {
     const data = await req.json();
     const recipe = await createRecipe(data);
     return NextResponse.json(recipe, { status: 201 });
-  } catch (error) {
-    console.error(error);
-    return NextResponse.json(
-      { error: "Failed to create recipe" },
-      { status: 400 }
-    );
+  } catch (err: unknown) {
+    if (err instanceof Error && err.message.includes("Slug already exists")) {
+      return NextResponse.json(
+        { error: "Slug already exists." },
+        { status: 409 }
+      );
+    }
+
+    return NextResponse.json({ error: "Invalid input." }, { status: 400 });
   }
 }
