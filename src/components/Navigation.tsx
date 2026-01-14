@@ -13,8 +13,8 @@ export default function Navigation() {
           <Link href="/recepti" className="nav-btn">
             Recepti
           </Link>
-          <Link href="/admin/recepti/dodaj-novi" className="btn-primary">
-            Dodajte recept
+          <Link href="/admin/recepti" className="btn-primary">
+            Administracija
           </Link>
         </div>
       </div>
