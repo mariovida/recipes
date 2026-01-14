@@ -1,6 +1,6 @@
 import { cache } from "react";
 import prisma from "@/lib/prisma";
-import { MealType, Method, Difficulty } from "@prisma/client";
+import { Prisma, MealType, Method, Difficulty } from "@prisma/client";
 import { RecipeCardData, CreateRecipeInput } from "@/types/recipe";
 
 export async function getAllRecipes(method?: Method) {
@@ -52,6 +52,7 @@ export async function getRandomRecipesByMethod(
   });
 }
 
+// Get single recipe data
 export const getRecipeBySlug = cache(async (slug: string) => {
   return prisma.recipe.findUniqueOrThrow({
     where: { slug },
@@ -105,6 +106,7 @@ export async function getRelatedRecipes(
   return unique.slice(0, 3);
 }
 
+// Create new recipe
 export async function createRecipe(data: CreateRecipeInput) {
   if (!data.title || !data.slug) {
     throw new Error("Title and slug are required.");
@@ -163,6 +165,74 @@ export async function createRecipe(data: CreateRecipeInput) {
         })),
       },
     },
+    include: {
+      ingredients: true,
+      steps: true,
+    },
+  });
+}
+
+// Update recipe
+export async function updateRecipe(
+  slug: string,
+  data: Partial<CreateRecipeInput>
+) {
+  if (data.method && !Object.values(Method).includes(data.method)) {
+    throw new Error("Invalid method.");
+  }
+
+  if (data.difficulty && !Object.values(Difficulty).includes(data.difficulty)) {
+    throw new Error("Invalid difficulty.");
+  }
+
+  if (data.mealType && !Object.values(MealType).includes(data.mealType)) {
+    throw new Error("Invalid meal type.");
+  }
+
+  const prepTime =
+    data.prepTimeMinutes !== undefined && data.prepTimeMinutes !== null
+      ? Number(data.prepTimeMinutes)
+      : data.prepTimeMinutes ?? null;
+
+  if (prepTime !== null && prepTime !== undefined && isNaN(prepTime)) {
+    throw new Error("Prep time must be a number.");
+  }
+
+  const updateData: Prisma.RecipeUpdateInput = {};
+
+  if (data.title !== undefined) updateData.title = data.title;
+  if (data.lead !== undefined) updateData.lead = data.lead;
+  if (prepTime !== undefined) updateData.prepTimeMinutes = prepTime;
+  if (data.difficulty !== undefined) updateData.difficulty = data.difficulty;
+  if (data.servings !== undefined) updateData.servings = Number(data.servings);
+  if (data.method !== undefined) updateData.method = data.method;
+  if (data.mealType !== undefined) updateData.mealType = data.mealType;
+  if (data.imageCdnPath !== undefined)
+    updateData.imageCdnPath = data.imageCdnPath;
+
+  if (data.ingredients) {
+    updateData.ingredients = {
+      deleteMany: {},
+      create: data.ingredients.map((ing, index) => ({
+        text: ing.text,
+        order: index + 1,
+      })),
+    };
+  }
+
+  if (data.steps) {
+    updateData.steps = {
+      deleteMany: {},
+      create: data.steps.map((step, index) => ({
+        text: step.text,
+        order: index + 1,
+      })),
+    };
+  }
+
+  return prisma.recipe.update({
+    where: { slug },
+    data: updateData,
     include: {
       ingredients: true,
       steps: true,
