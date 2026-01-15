@@ -104,12 +104,22 @@ export default async function RecipePage(props: {
       </p>
 
       <h1 className="title">{recipe.title}</h1>
+      {recipe.tags?.length > 0 && (
+        <div className="tags">
+          {recipe.tags.map((tag) => (
+            <span key={tag} className="tags-item">
+              {tag}
+            </span>
+          ))}
+        </div>
+      )}
+
       {recipe.lead && <p className="lead">{recipe.lead}</p>}
 
       <header className="hero">
         <Image
           src={imageUrl}
-          alt={recipe.title}
+          alt={`Recept za ${recipe.title}`}
           fill
           unoptimized
           style={{ objectFit: "cover" }}

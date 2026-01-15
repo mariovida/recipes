@@ -15,6 +15,7 @@ export async function getAllRecipes(method?: Method) {
       prepTimeMinutes: true,
       difficulty: true,
       method: true,
+      updatedAt: true,
     },
   });
 }
@@ -54,10 +55,15 @@ export async function getRandomRecipesByMethod(
 
 // Get single recipe data
 export const getRecipeBySlug = cache(async (slug: string) => {
-  return prisma.recipe.findUniqueOrThrow({
+  const recipe = await prisma.recipe.findUniqueOrThrow({
     where: { slug },
     include: { ingredients: true, steps: true },
   });
+
+  return {
+    ...recipe,
+    tags: (recipe.tags ?? []) as string[],
+  };
 });
 
 export async function getRelatedRecipes(
