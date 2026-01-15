@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import Image from "next/image";
+import AdminRecipeThumb from "@/components/AdminRecipeThumb";
 import type { AdminRecipeListItem } from "@/types/recipe";
 import { Trash2 } from "lucide-react";
 import ConfirmationModal from "@/components/ConfirmationModal";
@@ -34,15 +34,7 @@ export default function AdminRecipesList({
 
           return (
             <div key={r.id} className="admin-item">
-              <Image
-                src={imageUrl}
-                alt={r.title}
-                width={80}
-                height={80}
-                className="admin-thumb"
-                style={{ objectFit: "cover" }}
-                unoptimized
-              />
+              <AdminRecipeThumb src={imageUrl} alt={r.title} />
 
               <div className="admin-info">
                 <h3>{r.title}</h3>
