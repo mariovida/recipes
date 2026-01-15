@@ -2,6 +2,7 @@
 @use "@/styles/colors" as c;
 
 .select-trigger {
+  max-height: 48px;
   display: flex;
   justify-content: space-between;
   align-items: center;

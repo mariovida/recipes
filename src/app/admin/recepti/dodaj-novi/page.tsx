@@ -10,6 +10,7 @@ import IngredientsList from "@/components/IngredientsList";
 import { IngredientInput } from "@/components/IngredientsList";
 import StepsList from "@/components/StepsList";
 import { StepInput } from "@/components/StepsList";
+import { X } from "lucide-react";
 import { slugify } from "@/lib/slugify";
 import "@/styles/pages/recipeNew.scss";
 
@@ -18,6 +19,8 @@ export default function NewRecipePage() {
   const [difficulty, setDifficulty] = useState<Difficulty>(Difficulty.lagano);
   const [mealType, setMealType] = useState<MealType>(MealType.desert);
   const [imageFilename, setImageFilename] = useState("");
+  const [tagInput, setTagInput] = useState("");
+  const [tags, setTags] = useState<string[]>([]);
   const [ingredients, setIngredients] = useState<IngredientInput[]>([
     { id: crypto.randomUUID(), text: "" },
   ]);
@@ -28,6 +31,23 @@ export default function NewRecipePage() {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState<string | null>(null);
   const [slug, setSlug] = useState("");
+
+  function handleTagKeyDown(e: React.KeyboardEvent<HTMLInputElement>) {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      const value = tagInput.trim().toLowerCase();
+
+      if (value && !tags.includes(value)) {
+        setTags([...tags, value]);
+      }
+
+      setTagInput("");
+    }
+  }
+
+  function removeTag(tag: string) {
+    setTags(tags.filter((t) => t !== tag));
+  }
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -50,6 +70,7 @@ export default function NewRecipePage() {
       method,
       mealType,
       difficulty,
+      tags,
       ingredients: ingredients.map((item, index) => ({
         order: index + 1,
         text: item.text,
@@ -166,7 +187,7 @@ export default function NewRecipePage() {
             </Select>
           </label>
 
-          <label className="full">
+          <label>
             Naziv slike
             <input
               name="imageFilename"
@@ -175,6 +196,34 @@ export default function NewRecipePage() {
               value={imageFilename}
               onChange={(e) => setImageFilename(e.target.value)}
             />
+          </label>
+
+          <label className="full">
+            Tagovi
+            <div className="tags">
+              <div className="tags-list">
+                {tags.map((tag) => (
+                  <span key={tag} className="tags-badge">
+                    {tag}
+                    <button
+                      type="button"
+                      className="remove"
+                      onClick={() => removeTag(tag)}
+                    >
+                      <X size={16} />
+                    </button>
+                  </span>
+                ))}
+              </div>
+
+              <input
+                type="text"
+                placeholder="Dodaj tag i pritisni Enter"
+                value={tagInput}
+                onChange={(e) => setTagInput(e.target.value)}
+                onKeyDown={handleTagKeyDown}
+              />
+            </div>
           </label>
 
           <label className="full">

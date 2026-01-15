@@ -36,7 +36,7 @@ export function Select<T extends string>({
             position="popper"
             side="bottom"
             align="start"
-            sideOffset={4}
+            sideOffset={5}
           >
             <RadixSelect.ScrollUpButton className="select-scroll-btn">
               <ChevronUp />

@@ -5,7 +5,7 @@
   padding: 24px 16px 80px;
 
   h1 {
-    font-size: 36px;
+    font-size: 32px;
     font-weight: 700;
     margin-bottom: 32px;
   }
@@ -68,6 +68,37 @@
           min-height: 80px;
           max-height: 140px;
           font-family: f.$ff-primary;
+        }
+      }
+
+      .tags {
+        input {
+          width: -webkit-fill-available;
+        }
+
+        &-list {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 12px;
+          margin-bottom: 10px;
+        }
+
+        &-badge {
+          display: flex;
+          align-items: center;
+          gap: 6px;
+          background-color: c.$orange-light;
+          padding: 8px 12px;
+          border-radius: 6px;
+
+          .remove {
+            width: 16px;
+            height: 16px;
+            padding: 0;
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+          }
         }
       }
     }

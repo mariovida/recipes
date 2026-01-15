@@ -152,6 +152,7 @@ export async function createRecipe(data: CreateRecipeInput) {
       method: data.method,
       mealType: data.mealType,
       imageCdnPath: data.imageCdnPath ?? null,
+      tags: data.tags ?? [],
       ingredients: {
         create: data.ingredients.map((ing, index) => ({
           text: ing.text,
