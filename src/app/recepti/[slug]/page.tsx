@@ -6,6 +6,7 @@ import {
   getRecipeBySlug,
   getRelatedRecipes,
 } from "@/lib/repositories/recipeRepository";
+import FallbackImage from "@/components/FallbackImage";
 import RecipeCard from "@/components/RecipeCard";
 import RecipeInfo from "@/components/RecipeInfo";
 import { ArrowLeft, CircleSmall } from "lucide-react";
@@ -78,6 +79,9 @@ export default async function RecipePage(props: {
     notFound();
   }
 
+  const steps = recipe.steps.filter((s) => s.text.trim() !== "");
+  const ingredients = recipe.ingredients.filter((i) => i.text.trim() !== "");
+
   const related = await getRelatedRecipes(
     recipe.id,
     recipe.mealType,
@@ -117,11 +121,10 @@ export default async function RecipePage(props: {
       {recipe.lead && <p className="lead">{recipe.lead}</p>}
 
       <header className="hero">
-        <Image
+        <FallbackImage
           src={imageUrl}
           alt={`Recept za ${recipe.title}`}
           fill
-          unoptimized
           style={{ objectFit: "cover" }}
         />
       </header>
@@ -135,32 +138,36 @@ export default async function RecipePage(props: {
       />
 
       <div className="content">
-        <section className="ingredients">
-          <h2>Sastojci</h2>
-          <div className="ingredients-list">
-            {recipe.ingredients
-              .sort((a, b) => a.order - b.order)
-              .map((ing) => (
-                <p key={ing.id}>
-                  <span>
-                    <CircleSmall size={14} color="#f0960f" />
-                  </span>
-                  {ing.text}
-                </p>
-              ))}
-          </div>
-        </section>
+        {ingredients.length > 0 && (
+          <section className="ingredients">
+            <h2>Sastojci</h2>
+            <div className="ingredients-list">
+              {recipe.ingredients
+                .sort((a, b) => a.order - b.order)
+                .map((ing) => (
+                  <p key={ing.id}>
+                    <span>
+                      <CircleSmall size={14} color="#f0960f" />
+                    </span>
+                    {ing.text}
+                  </p>
+                ))}
+            </div>
+          </section>
+        )}
 
-        <section className="steps">
-          <h2>Koraci</h2>
-          <ol className="steps-list">
-            {recipe.steps.map((step) => (
-              <li key={step.id} className="step">
-                <p>{step.text}</p>
-              </li>
-            ))}
-          </ol>
-        </section>
+        {steps.length > 0 && (
+          <section className="steps">
+            <h2>Koraci</h2>
+            <ol className="steps-list">
+              {recipe.steps.map((step) => (
+                <li key={step.id} className="step">
+                  <p>{step.text}</p>
+                </li>
+              ))}
+            </ol>
+          </section>
+        )}
       </div>
 
       {related.length > 0 && (
