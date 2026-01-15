@@ -33,7 +33,7 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {random.length > 0 && (
+      {/* {random.length > 0 && (
         <section className="suggested">
           <h2>Inspiracija za današnje kuhanje</h2>
           <div className="suggested-list">
@@ -42,7 +42,7 @@ export default async function HomePage() {
             ))}
           </div>
         </section>
-      )}
+      )} */}
     </div>
   );
 }
