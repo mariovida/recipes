@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import type { AdminRecipeListItem } from "@/types/recipe";
+import { Trash2 } from "lucide-react";
 import ConfirmationModal from "@/components/ConfirmationModal";
 import "@/styles/pages/admin.scss";
 
@@ -24,7 +25,7 @@ export default function AdminRecipesList({
   }
 
   return (
-    <div className="wrapper-sm admin-page">
+    <>
       <div className="admin-list">
         {recipes.map((r) => {
           const imageUrl = r.imageCdnPath
@@ -49,16 +50,13 @@ export default function AdminRecipesList({
 
               <Link
                 href={`/admin/recepti/${r.slug}/uredi`}
-                className="btn-secondary edit-btn"
+                className="btn-secondary edit"
               >
                 Uredi
               </Link>
 
-              <button
-                className="btn-danger delete-btn"
-                onClick={() => setDeleteSlug(r.slug)}
-              >
-                Obriši
+              <button className="delete" onClick={() => setDeleteSlug(r.slug)}>
+                <Trash2 size={16} color="#f2f2f2" />
               </button>
             </div>
           );
@@ -69,12 +67,14 @@ export default function AdminRecipesList({
         open={deleteSlug !== null}
         onClose={() => setDeleteSlug(null)}
         title="Obrisati recept?"
-        description="Ova radnja je trajna i ne može se poništiti."
+        description="Jeste li sigurni da želite obrisati ovaj recept? Ova radnja je trajna i ne može se poništiti."
         onConfirm={() => {
           if (deleteSlug) handleDelete(deleteSlug);
           setDeleteSlug(null);
         }}
+        icon={<Trash2 size={22} color="#f0960f" />}
+        confirmLabel="Obriši"
       />
-    </div>
+    </>
   );
 }
