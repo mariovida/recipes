@@ -10,6 +10,8 @@ type ConfirmationModalProps = {
   title: string;
   description: string;
   onConfirm?: () => void;
+  icon?: React.ReactNode;
+  confirmLabel?: string;
 };
 
 export default function ConfirmationModal({
@@ -18,6 +20,8 @@ export default function ConfirmationModal({
   title,
   description,
   onConfirm,
+  icon,
+  confirmLabel,
 }: ConfirmationModalProps) {
   return (
     <Dialog.Root open={open} onOpenChange={onClose}>
@@ -25,9 +29,7 @@ export default function ConfirmationModal({
         <Dialog.Overlay className="modal-overlay" />
         <Dialog.Content className="modal-content">
           <Dialog.Title>
-            <span>
-              <BadgeCheck size={22} color="#f0960f" />
-            </span>
+            <span>{icon ?? <BadgeCheck size={22} color="#f0960f" />}</span>
             {title}
           </Dialog.Title>
           <Dialog.Description className="modal-description">
@@ -41,7 +43,7 @@ export default function ConfirmationModal({
               onConfirm?.();
             }}
           >
-            Zatvori
+            {confirmLabel ?? "Zatvori"}
           </button>
         </Dialog.Content>
       </Dialog.Portal>
