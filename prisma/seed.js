@@ -495,7 +495,7 @@ async function main() {
       difficulty: "srednje_zahtjevno",
       mealType: "meso",
       method: "kuhanje",
-      tags: ["domace", "paprika", "comfort-food"],
+      tags: ["domace", "paprika", "piletina"],
       ingredients: {
         create: [
           { order: 1, text: "500 g pilećeg filea" },
