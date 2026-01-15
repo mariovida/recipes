@@ -4,7 +4,7 @@
 
 <!-- An app built with **Next.js**, **Prisma 7** and **SQLite**. -->
 
-Demo link: [recipes-app.giize.com](https://recipes-app.giize.com)
+#### Demo link: [recipes-app.giize.com](https://recipes-app.giize.com)
 
 ## Overview
 
