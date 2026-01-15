@@ -1,4 +1,4 @@
-<!-- ![Showcase 1](https://i.ibb.co/MyTKk3DL/recipes-showcase1-scaled.png) -->
+![Showcase 1](https://recipes-app.giize.com/cdn/recipes/showcase_3.png)
 
 # Recipes app
 
