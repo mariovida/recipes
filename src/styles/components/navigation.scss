@@ -12,10 +12,29 @@
     align-items: center;
     margin: 0 auto;
     padding: 0 16px;
+
+    @include xs {
+      padding-right: 20px;
+    }
   }
 
   .logo {
+    display: flex;
+    align-items: center;
     height: 40px;
+
+    img:last-child {
+      display: none;
+    }
+
+    @include xs {
+      img:first-child {
+        display: none;
+      }
+      img:last-child {
+        display: block;
+      }
+    }
   }
 
   .nav-links {
@@ -32,7 +51,9 @@
     }
 
     @include xs {
-      display: none;
+      a:last-child {
+        display: none;
+      }
     }
   }
 }

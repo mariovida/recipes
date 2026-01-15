@@ -8,6 +8,13 @@ export default function Navigation() {
       <div className="nav-inner">
         <Link href="/" className="logo">
           <Image src="/logo.svg" alt="Logo" width={160} height={40} priority />
+          <Image
+            src="/logo-mobile.svg"
+            alt="Logo"
+            width={36}
+            height={36}
+            priority
+          />
         </Link>
         <div className="nav-links">
           <Link href="/recepti" className="nav-btn">
