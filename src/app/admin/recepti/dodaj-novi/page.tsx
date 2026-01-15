@@ -10,6 +10,7 @@ import IngredientsList from "@/components/IngredientsList";
 import { IngredientInput } from "@/components/IngredientsList";
 import StepsList from "@/components/StepsList";
 import { StepInput } from "@/components/StepsList";
+import ConfirmationModal from "@/components/ConfirmationModal";
 import { X } from "lucide-react";
 import { slugify } from "@/lib/slugify";
 import "@/styles/pages/recipeNew.scss";
@@ -31,6 +32,7 @@ export default function NewRecipePage() {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState<string | null>(null);
   const [slug, setSlug] = useState("");
+  const [showModal, setShowModal] = useState(false);
 
   function handleTagKeyDown(e: React.KeyboardEvent<HTMLInputElement>) {
     if (e.key === "Enter") {
@@ -90,12 +92,9 @@ export default function NewRecipePage() {
     const json = await res.json();
 
     if (!res.ok) {
-      setMessage(json.error || "Greška pri spremanju recepta");
+      setMessage(json.error || "Greška pri spremanju recepta.");
     } else {
-      setMessage("Recept uspješno dodan!");
-      form.reset();
-      setSlug("");
-      setIngredients([{ id: crypto.randomUUID(), text: "" }]);
+      setShowModal(true);
     }
 
     setLoading(false);
@@ -245,6 +244,14 @@ export default function NewRecipePage() {
 
         {message && <p>{message}</p>}
       </form>
+
+      <ConfirmationModal
+        open={showModal}
+        onClose={setShowModal}
+        title="Recept spremljen"
+        description="Recept je uspješno dodan."
+        onConfirm={() => (window.location.href = "/admin/recepti")}
+      />
     </div>
   );
 }
