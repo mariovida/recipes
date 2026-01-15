@@ -26,6 +26,11 @@ export default function RecipeInfo({
       value: methodLabels[method],
     },
     {
+      icon: <Star size={20} color="#f0960f" />,
+      label: "Težina",
+      value: difficultyLabels[difficulty],
+    },
+    {
       icon: <Clock2 size={20} color="#f0960f" />,
       label: "Vrijeme pripreme",
       value: `${prepTimeMinutes} minuta`,
@@ -35,12 +40,11 @@ export default function RecipeInfo({
       label: "Porcije",
       value: servings,
     },
-    {
-      icon: <Star size={20} color="#f0960f" />,
-      label: "Težina",
-      value: difficultyLabels[difficulty],
-    },
-    // { icon: <Utensils size={20} />, label: "Tip jela", value: mealType },
+    /*{
+      icon: <Utensils size={20} color="#f0960f" />,
+      label: "Tip jela",
+      value: mealType,
+    },*/
   ];
 
   return (
