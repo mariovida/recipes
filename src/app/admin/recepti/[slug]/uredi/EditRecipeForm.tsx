@@ -202,7 +202,7 @@ export default function EditRecipeForm({
               </Select>
             </label>
 
-            <label className="full">
+            <label>
               Naziv slike
               <input
                 name="imageFilename"
