@@ -11,7 +11,10 @@ function getMimeType(filePath: string) {
   return "application/octet-stream";
 }
 
-export async function GET(context: { params: Promise<{ path: string[] }> }) {
+export async function GET(
+  req: Request,
+  context: { params: Promise<{ path: string[] }> }
+) {
   const { path } = await context.params;
 
   try {

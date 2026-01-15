@@ -1,10 +1,10 @@
-![Showcase 1](https://recipes-app.giize.com/cdn/recipes/showcase_3.png)
-
 # Recipes app
 
 <!-- An app built with **Next.js**, **Prisma 7** and **SQLite**. -->
 
 #### Demo link: [recipes-app.giize.com](https://recipes-app.giize.com)
+
+![Showcase 1](https://recipes-app.giize.com/cdn/recipes/showcase_3.png)
 
 ## Overview
 
