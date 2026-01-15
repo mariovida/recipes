@@ -30,11 +30,15 @@ export default function RecipeInfo({
       label: "Težina",
       value: difficultyLabels[difficulty],
     },
-    {
-      icon: <Clock2 size={20} color="#f0960f" />,
-      label: "Vrijeme pripreme",
-      value: `${prepTimeMinutes} minuta`,
-    },
+    ...(prepTimeMinutes && prepTimeMinutes > 0
+      ? [
+          {
+            icon: <Clock2 size={20} color="#f0960f" />,
+            label: "Vrijeme pripreme",
+            value: `${prepTimeMinutes} minuta`,
+          },
+        ]
+      : []),
     {
       icon: <Utensils size={20} color="#f0960f" />,
       label: "Porcije",

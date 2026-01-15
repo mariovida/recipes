@@ -37,7 +37,7 @@ export default function RecipeCard({ recipe }: Props) {
       </div>
       <div className="recipe-card_content">
         <div className="recipe-info">
-          {recipe.prepTimeMinutes && (
+          {(recipe.prepTimeMinutes ?? 0) > 0 && (
             <p>
               <Clock size={15} />
               {recipe.prepTimeMinutes} min

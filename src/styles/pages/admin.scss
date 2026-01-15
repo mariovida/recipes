@@ -21,7 +21,8 @@
   &-list {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 24px;
+    column-gap: 24px;
+    row-gap: 32px;
     margin-top: 40px;
 
     @include sm {
