@@ -75,8 +75,16 @@
   &-info {
     flex: 1;
 
-    h3 {
-      font-size: 18px;
+    a {
+      display: inline-block;
+
+      &:hover {
+        color: c.$black-light;
+      }
+
+      h3 {
+        font-size: 18px;
+      }
     }
 
     .slug {

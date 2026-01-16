@@ -37,7 +37,9 @@ export default function AdminRecipesList({
               <AdminRecipeThumb src={imageUrl} alt={r.title} />
 
               <div className="admin-info">
-                <h3>{r.title}</h3>
+                <Link href={`/admin/recepti/${r.slug}/uredi`}>
+                  <h3>{r.title}</h3>
+                </Link>
               </div>
 
               <Link
