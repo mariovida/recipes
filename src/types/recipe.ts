@@ -35,3 +35,5 @@ export type AdminRecipeListItem = Prisma.RecipeGetPayload<{
     imageCdnPath: true;
   };
 }>;
+
+export type Tag = { id: string; value: string };

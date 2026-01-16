@@ -216,6 +216,7 @@ export async function updateRecipe(
   if (data.mealType !== undefined) updateData.mealType = data.mealType;
   if (data.imageCdnPath !== undefined)
     updateData.imageCdnPath = data.imageCdnPath;
+  if (data.tags !== undefined) updateData.tags = data.tags;
 
   if (data.ingredients) {
     updateData.ingredients = {

@@ -16,7 +16,8 @@ import { mealTypeLabels } from "@/lib/enums/mealType";
 import IngredientsList, { IngredientInput } from "@/components/IngredientsList";
 import StepsList, { StepInput } from "@/components/StepsList";
 import { Select, SelectItem } from "@/components/Select";
-import { ArrowLeft } from "lucide-react";
+import type { Tag } from "@/types/recipe";
+import { ArrowLeft, X } from "lucide-react";
 import ConfirmationModal from "@/components/ConfirmationModal";
 import "@/styles/pages/recipeNew.scss";
 
@@ -34,6 +35,19 @@ export default function EditRecipeForm({
   const [prepTimeMinutes, setPrepTimeMinutes] = useState<number>(
     recipe.prepTimeMinutes ?? 0
   );
+  const [tagInput, setTagInput] = useState("");
+
+  const [tags, setTags] = useState<Tag[]>(
+    Array.isArray(recipe.tags)
+      ? recipe.tags
+          .filter((t): t is string => typeof t === "string")
+          .map((t) => ({
+            id: crypto.randomUUID(),
+            value: t,
+          }))
+      : []
+  );
+
   const [imageFilename, setImageFilename] = useState(
     recipe.imageCdnPath?.split("/").pop() ?? ""
   );
@@ -53,6 +67,23 @@ export default function EditRecipeForm({
   const [message, setMessage] = useState<string | null>(null);
   const [showModal, setShowModal] = useState(false);
 
+  function handleTagKeyDown(e: React.KeyboardEvent<HTMLInputElement>) {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      const value = tagInput.trim().toLowerCase();
+
+      if (value && !tags.some((t) => t.value === value)) {
+        setTags([...tags, { id: crypto.randomUUID(), value }]);
+      }
+
+      setTagInput("");
+    }
+  }
+
+  function removeTag(id: string) {
+    setTags(tags.filter((t) => t.id !== id));
+  }
+
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setLoading(true);
@@ -67,6 +98,7 @@ export default function EditRecipeForm({
       servings,
       prepTimeMinutes,
       imageCdnPath: `/recipes/${recipe.slug}/${imageFilename}`,
+      tags,
       ingredients: ingredients.map((item, index) => ({
         order: index + 1,
         text: item.text,
@@ -211,6 +243,34 @@ export default function EditRecipeForm({
                 value={imageFilename}
                 onChange={(e) => setImageFilename(e.target.value)}
               />
+            </label>
+
+            <label className="full">
+              Tagovi
+              <div className="tags">
+                <div className="tags-list">
+                  {tags.map((tag) => (
+                    <span key={tag.id} className="tags-badge">
+                      {tag.value}
+                      <button
+                        type="button"
+                        className="remove"
+                        onClick={() => removeTag(tag.id)}
+                      >
+                        <X size={16} />
+                      </button>
+                    </span>
+                  ))}
+                </div>
+
+                <input
+                  type="text"
+                  placeholder="Dodaj tag i pritisni Enter"
+                  value={tagInput}
+                  onChange={(e) => setTagInput(e.target.value)}
+                  onKeyDown={handleTagKeyDown}
+                />
+              </div>
             </label>
 
             <label className="full">
