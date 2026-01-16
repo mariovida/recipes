@@ -2,7 +2,7 @@
 
 <!-- An app built with **Next.js**, **Prisma 7** and **SQLite**. -->
 
-#### Demo link: [recipes-app.giize.com](https://recipes-app.giize.com)
+### Demo link: [recipes-app.giize.com](https://recipes-app.giize.com)
 
 ![Showcase 1](https://recipes-app.giize.com/cdn/recipes/showcase_3.png)
 
@@ -48,6 +48,7 @@ Create .env file in the project root (or copy .env.example to .env and adjust if
 ```
 DATABASE_URL="file:./dev.db"
 NEXT_PUBLIC_CDN_BASE_URL="http://localhost:3000/cdn"
+NEXT_PUBLIC_SITE_URL=
 ```
 
 Prisma and the app both require environment variables to run correctly.
