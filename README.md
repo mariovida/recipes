@@ -4,7 +4,7 @@
 
 <h3 align="center"> <strong>Demo link:</strong> <a href="https://recipes-app.giize.com">recipes-app.giize.com</a> </h3>
 
-![Showcase 1](https://recipes-app.giize.com/cdn/recipes/showcase_3.png)
+![Showcase 1](https://recipes-app.giize.com/cdn/recipes/showcase_3-rounded.png)
 
 ## Overview
 
